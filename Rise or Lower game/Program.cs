@@ -1,6 +1,6 @@
 ﻿Random random = new Random();
 int secretNumber = random.Next(1, 101);
-int attempts = 1;
+int attempts = 0;
 int guess;
 
 
@@ -8,12 +8,21 @@ Console.WriteLine("Попробуй угадать число от 1 до 100");
 
 
 bool success = int.TryParse(Console.ReadLine(), out guess);
+if (success)
+{
+    attempts += 1;
+}
+
 while (guess != secretNumber)
 {
     if (!success)
     {
-        Console.WriteLine("Введите число");
+        Console.WriteLine("Введите допустимое число");
         success = int.TryParse(Console.ReadLine(), out guess);
+        if (success)
+        {
+            attempts += 1;
+        }
     }
 
     else
@@ -40,3 +49,4 @@ while (guess != secretNumber)
     }
 }
 Console.WriteLine("Ты угадал");
+Console.WriteLine($"Количество попыток: {attempts}");
