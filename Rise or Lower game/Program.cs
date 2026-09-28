@@ -1,4 +1,8 @@
-﻿Random random = new Random();
+﻿bool repeat;
+do
+{
+
+Random random = new Random();
 int secretNumber = random.Next(1, 101);
 int attempts = 0;
 int guess;
@@ -50,3 +54,9 @@ while (guess != secretNumber)
 }
 Console.WriteLine("Ты угадал");
 Console.WriteLine($"Количество попыток: {attempts}");
+Console.WriteLine("Хотите повторить? (да/нет)");
+string input = Console.ReadLine().Trim().ToLower();
+repeat = (input == "да" || input == "y");
+}
+while (repeat);
+Console.WriteLine("Программа завершена.");
